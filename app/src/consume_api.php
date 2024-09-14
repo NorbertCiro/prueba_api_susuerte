@@ -1,7 +1,5 @@
 <?php
 // consume_api.php
-//SERVER EN PHP
-echo "Servidor en php";
 $apiUrl = 'https://jsonplaceholder.typicode.com/users';
 $response = file_get_contents($apiUrl);
 
