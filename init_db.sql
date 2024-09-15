@@ -7,15 +7,9 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(100),
     username VARCHAR(50),
     email VARCHAR(100),
-    address_street VARCHAR(100),
-    address_suite VARCHAR(100),
     address_city VARCHAR(50),
-    address_zipcode VARCHAR(20),
-    address_lat FLOAT,
-    address_lng FLOAT,
     phone VARCHAR(50),
     website VARCHAR(100),
     company_name VARCHAR(100),
-    company_catchPhrase VARCHAR(255),
     company_bs VARCHAR(255)
 );
