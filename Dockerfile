@@ -5,7 +5,7 @@ FROM php:8.0-apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Copia los archivos del proyecto al contenedor
-COPY index.php /var/www/html/
+COPY /app /var/www/html/
 # COPY ./public /var/www/html/public/
 
 # Copia el archivo de configuración del Apache

@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
     address_zipcode VARCHAR(20),
     address_lat FLOAT,
     address_lng FLOAT,
-    phone VARCHAR(20),
+    phone VARCHAR(50),
     website VARCHAR(100),
     company_name VARCHAR(100),
     company_catchPhrase VARCHAR(255),
