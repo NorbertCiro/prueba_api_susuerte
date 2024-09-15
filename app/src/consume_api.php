@@ -10,6 +10,6 @@ if ($response === FALSE) {
 $data = json_decode($response, true);
 
 // Mostrar datos para verificar
-echo '<pre>';
-print_r($data);
-echo '</pre>';
+// echo '<pre>';
+// print_r($data);
+// echo '</pre>';

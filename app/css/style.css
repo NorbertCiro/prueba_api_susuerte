@@ -1,0 +1,22 @@
+/* css/styles.css */
+
+body {
+  background-color: #264b70;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+}
+
+.table {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.btn {
+  border-radius: 5px;
+}

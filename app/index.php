@@ -7,9 +7,13 @@ require_once 'src/consume_api.php';
 // $apiUrl = 'https://jsonplaceholder.typicode.com/users';
 // $response = file_get_contents($apiUrl);
 
-if ($response === FALSE) {
-    die('Error al consumir la API');
-}
+// Incluye el controlador
+require_once 'controllers/UserController.php';
+
+// Instancia el controlador
+$controller = new UserController();
+$controller->index();
+
 
 $data = json_decode($response, true);
 
