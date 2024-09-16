@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($user) ? 'Edit User' : 'Add User'; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 <body>
-     <!-- include '/views/templates/header.php';  -->
-
     <div class="container mt-4">
         <h1><?php echo isset($user) ? 'Edit User' : 'Add User'; ?></h1>
-        <form action="save.php" method="POST">
+        <form action="/app" method="POST">
+            <input type="hidden" name="action" value="<?php echo isset($user) ? 'edit' : 'create'; ?>">
             <?php if (isset($user)): ?>
                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
             <?php endif; ?>
@@ -52,8 +50,6 @@
             <a href="../" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
-
-     <!-- include 'views/templates/footer.php';  -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

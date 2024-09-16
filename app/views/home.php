@@ -6,18 +6,28 @@
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function submitSearchForm() {
+            const form = document.getElementById('searchForm');
+            form.submit();
+        }
+    </script>
 </head>
 <body>
-    <?php include 'views/templates/header.php'; ?>
+    <?php include 'views/templates/header.php'; 
+    require_once 'controllers/UserController.php';
+
+    // Instancia el controlador
+    $controller = new UserController();
+    ?>
 
     <div class="container mt-4">
         <h1>Users List</h1>
 
         <!-- Search Form -->
-        <form method="GET" action="views/search.php" class="mb-4">
+        <form id="searchForm" method="GET" action="index.php" class="mb-4">
             <div class="input-group">
-                <input type="number" name="id" class="form-control" placeholder="Buscar usuario por ID" required>
-                <button type="submit" class="btn btn-primary">Search</button>
+                <input type="number" name="id" class="form-control" placeholder="Buscar usuario por ID" value="<?php echo htmlspecialchars($_GET['id'] ?? '', ENT_QUOTES); ?>" oninput="submitSearchForm()">
             </div>
         </form>
 
@@ -39,23 +49,29 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($user['id']); ?></td>
-                    <td><?php echo htmlspecialchars($user['name']); ?></td>
-                    <td><?php echo htmlspecialchars($user['username']); ?></td>
-                    <td><?php echo htmlspecialchars($user['email']); ?></td>
-                    <td><?php echo htmlspecialchars($user['address_city']); ?></td>
-                    <td><?php echo htmlspecialchars($user['phone']); ?></td>
-                    <td><?php echo htmlspecialchars($user['website']); ?></td>
-                    <td><?php echo htmlspecialchars($user['company_name']); ?></td>
-                    <td><?php echo htmlspecialchars($user['company_bs']); ?></td>
-                    <td>
-                        <a href="form.php?id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="?id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Estas seguro de eliminar el usuario?')">Eliminar</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
+                <?php if (!empty($users)): ?>
+                    <?php foreach ($users as $user): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($user['id']); ?></td>
+                            <td><?php echo htmlspecialchars($user['name']); ?></td>
+                            <td><?php echo htmlspecialchars($user['username']); ?></td>
+                            <td><?php echo htmlspecialchars($user['email']); ?></td>
+                            <td><?php echo htmlspecialchars($user['address_city']); ?></td>
+                            <td><?php echo htmlspecialchars($user['phone']); ?></td>
+                            <td><?php echo htmlspecialchars($user['website']); ?></td>
+                            <td><?php echo htmlspecialchars($user['company_name']); ?></td>
+                            <td><?php echo htmlspecialchars($user['company_bs']); ?></td>
+                            <td>
+                                <a href="views/form.php?id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="?delete_id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar al usuario?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="10" class="text-center">No users found</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
