@@ -12,6 +12,17 @@
 
     <div class="container mt-4">
         <h1>Users List</h1>
+
+        <!-- Search Form -->
+        <form method="GET" action="views/search.php" class="mb-4">
+            <div class="input-group">
+                <input type="number" name="id" class="form-control" placeholder="Buscar usuario por ID" required>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        <a href="views/form.php" class="btn btn-success mb-3">Add New User</a>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -24,6 +35,7 @@
                     <th>Website</th>
                     <th>Company Name</th>
                     <th>Company BS</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +50,10 @@
                     <td><?php echo htmlspecialchars($user['website']); ?></td>
                     <td><?php echo htmlspecialchars($user['company_name']); ?></td>
                     <td><?php echo htmlspecialchars($user['company_bs']); ?></td>
+                    <td>
+                        <a href="form.php?id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="?id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Estas seguro de eliminar el usuario?')">Eliminar</a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
