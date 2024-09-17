@@ -30,8 +30,11 @@
                 <input type="number" name="id" class="form-control" placeholder="Buscar usuario por ID" value="<?php echo htmlspecialchars($_GET['id'] ?? '', ENT_QUOTES); ?>" oninput="submitSearchForm()">
             </div>
         </form>
-
-        <a href="views/form.php" class="btn btn-success mb-3">Add New User</a>
+        <?php include("create.php"); ?>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
+        Agregar Usuario
+        </button>
+        <!-- <a href="views/form.php" class="btn btn-success mb-3">Add New User</a> -->
 
         <table class="table table-striped">
             <thead>
@@ -62,7 +65,10 @@
                             <td><?php echo htmlspecialchars($user['company_name']); ?></td>
                             <td><?php echo htmlspecialchars($user['company_bs']); ?></td>
                             <td>
-                                <a href="views/form.php?id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <?php include("edit.php"); ?>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit">
+                                Editar
+                            </button>
                                 <a href="?delete_id=<?php echo htmlspecialchars($user['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar al usuario?')">Eliminar</a>
                             </td>
                         </tr>
@@ -77,6 +83,7 @@
     </div>
 
     <?php include 'views/templates/footer.php'; ?>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>
