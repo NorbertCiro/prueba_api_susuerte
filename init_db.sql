@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS prueba_api_susuerte;
 USE prueba_api_susuerte;
 
 CREATE TABLE IF NOT EXISTS users (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
     username VARCHAR(50),
     email VARCHAR(100),

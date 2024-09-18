@@ -8,6 +8,7 @@ class UserController {
       $this->model = new UserModel();
   }
 
+  // Método para mostrar todos los usuarios o uno por ID
   public function index() {
       $users = [];
 
@@ -23,10 +24,11 @@ class UserController {
           $users = $this->model->getUsers();
       }
 
-      include 'views/home.php'; // Asegúrate de que la vista esté en la ruta correcta
+      include 'views/home.php'; 
   }
 
-  public function deleteUser($id) {
+  // Método para eliminar un usuario
+  public function deleteUser($id): never {
       if ($this->model->deleteUser($id)) {
           header('Location: index.php?message=Usuario eliminado con éxito');
           exit();
@@ -36,15 +38,29 @@ class UserController {
       }
   }
 
+  // Método para crear un nuevo usuario
   public function createUser($data) {
-      return $this->model->addUser($data);
-  }
+    if ($this->model->addUser($data)) {
+        header('Location: index.php?action=created');
+        exit();
+    } else {
+        header('Location: index.php?action=error');
+        exit();
+    }
+}
 
+  // Método para actualizar un usuario existente
   public function updateUser($id, $data) {
-      return $this->model->updateUser($id, $data);
+      if ($this->model->updateUser($id, $data)) {
+          header('Location: index.php?action=updated');
+          exit();
+      } else {
+          header('Location: index.php?action=error');
+          exit();
+      };
   }
 
-  // Método para manejar la solicitud
+  // Método para manejar las solicitudes
   public function handleRequest() {
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $action = isset($_POST['action']) ? $_POST['action'] : '';
@@ -83,9 +99,4 @@ class UserController {
 ob_end_flush();
 $controller = new UserController();
 $controller->handleRequest();
-?>
-<!-- <script>
-      setTimeout(() => {
-    window.location.href = window.location.pathname;
-}, 2000);
-</script> -->
+

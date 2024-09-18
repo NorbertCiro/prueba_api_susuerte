@@ -22,7 +22,7 @@
     ?>
 
     <div class="container mt-4">
-        <h1 class="mb-4 text-center">User Management</h1>
+        <h1 class="mb-4 text-center">Gestión de Usuarios</h1>
 
         <!-- Search Form -->
         <form id="searchForm" method="GET" action="index.php" class="mb-4">

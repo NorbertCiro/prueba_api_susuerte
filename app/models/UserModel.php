@@ -42,50 +42,50 @@ class UserModel {
 
     // Método para agregar un nuevo usuario
     public function addUser($data) {
-      $query = 'INSERT INTO users (name, username, email, address_city, phone, website, company_name, company_bs)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-      $stmt = $this->conn->prepare($query);
-      $stmt->bind_param(
-          'ssssssss',
-          $data['name'],
-          $data['username'],
-          $data['email'],
-          $data['address_city'],
-          $data['phone'],
-          $data['website'],
-          $data['company_name'],
-          $data['company_bs']
-      );
-      return $stmt->execute();
-  }
+        $query = 'INSERT INTO users (name, username, email, address_city, phone, website, company_name, company_bs)
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param(
+            'ssssssss',
+            $data['name'],
+            $data['username'],
+            $data['email'],
+            $data['address_city'],
+            $data['phone'],
+            $data['website'],
+            $data['company_name'],
+            $data['company_bs']
+        );
+        return $stmt->execute();
+    }
 
     // Método para actualizar un usuario existente
     public function updateUser($id, $data) {
-      $query = 'UPDATE users SET 
-                  name = ?, 
-                  username = ?, 
-                  email = ?, 
-                  address_city = ?, 
-                  phone = ?, 
-                  website = ?, 
-                  company_name = ?, 
-                  company_bs = ? 
-                WHERE id = ?';
-      $stmt = $this->conn->prepare($query);
-      $stmt->bind_param(
-          'ssssssssi',
-          $data['name'],
-          $data['username'],
-          $data['email'],
-          $data['address_city'],
-          $data['phone'],
-          $data['website'],
-          $data['company_name'],
-          $data['company_bs'],
-          $id
-      );
-      return $stmt->execute();
-  }
+        $query = 'UPDATE users SET 
+                    name = ?, 
+                    username = ?, 
+                    email = ?, 
+                    address_city = ?, 
+                    phone = ?, 
+                    website = ?, 
+                    company_name = ?, 
+                    company_bs = ? 
+                  WHERE id = ?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param(
+            'ssssssssi',
+            $data['name'],
+            $data['username'],
+            $data['email'],
+            $data['address_city'],
+            $data['phone'],
+            $data['website'],
+            $data['company_name'],
+            $data['company_bs'],
+            $id
+        );
+        return $stmt->execute();
+    }
 
     // Método para eliminar un usuario
     public function deleteUser($id) {

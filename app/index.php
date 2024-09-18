@@ -20,6 +20,7 @@ if (isset($_GET['delete_id'])) {
 // Instancia el controlador para cargar el home
 $controller = new UserController();
 $controller->index();
+// $userController->handleFormSubmission();
 
 // Consumir la API externa
 // $data = json_decode($response, true);
